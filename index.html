@@ -116,7 +116,7 @@
 								<div class="container">
 									<h3>Contact Me</h3>
 									<p>I'm always eager to explore new opportunities and collaborations. If you're seeking someone who not only has the ideas but also the drive to execute them, I'm your person! I can showcase my skills and add significant value to any project or team. Let's connect, discuss how I can contribute, and discover how we can collaborate to achieve outstanding results. Feel free to reach out—I'm ready to turn our ideas into action!</p>
-									<form method="post" action="https://formspree.io/f/mkgjpbpn">
+									<form method="post" action="https://formspree.io/f/mkgjpbpn" id = "myForm">
 										<div class="fields">
 											<div class="field">
 												<label for="name">Name</label>
@@ -135,6 +135,33 @@
 											<li><input type="submit" value="Send Message" /></li>
 										</ul>
 									</form>
+									
+										<script>
+										document.getElementById('myForm').addEventListener('submit', function(e) {
+											// Prevent the default form submission (optional, depending on Formspree behavior)
+											e.preventDefault();
+										
+											// Submit the form data to Formspree
+											fetch(this.action, {
+												method: 'POST',
+												body: new FormData(this),
+												headers: {
+													'Accept': 'application/json'
+												}
+											}).then(response => {
+												if (response.ok) {
+													// If submission is successful, clear the form
+													this.reset();
+													alert("Message sent successfully! Thank You!"); // Optional: Show a success message
+												} else {
+													alert("Error submitting the form.");
+												}
+											}).catch(error => {
+												alert("Error: " + error);
+											});
+										});
+										</script>
+									
 									<ul class="contact">
 										<li class="icon solid fa-home">
 											Nairobi, Kenya<br /><br/>
